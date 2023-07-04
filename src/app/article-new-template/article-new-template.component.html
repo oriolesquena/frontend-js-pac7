@@ -1,0 +1,41 @@
+<h3>
+    Create Article
+</h3>
+
+<div>
+    <h4 class="error" *ngIf="articleForm.invalid">{{message}}</h4>
+    <form (ngSubmit)="createArticle(articleForm)" #articleForm="ngForm">
+        <div ngModelGroup="article">
+            <div>
+                <input type="text" ngModel #articleName="ngModel" name="name" placeholder="Article Name" required />
+            </div>
+            <div class="error" *ngIf="(articleName.dirty  || message) && articleName.invalid">
+                Article name is required
+            </div>
+            <div>
+                <input type="number" ngModel name="price" placeholder="Article Price" #articlePrice="ngModel" required>
+            </div>
+            <div class="error" *ngIf="(articlePrice.dirty || message) && articlePrice.invalid">
+                Article price is required
+            </div>
+            <div>
+                <input type="text" ngModel name="imageUrl" placeholder="Article Image URL" #articleImageUrl="ngModel"
+                    pattern="^http(s?)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$" required>
+            </div>
+            <div class="error" *ngIf="(articleImageUrl.dirty || message) && articleImageUrl.invalid">
+                <div *ngIf="articleImageUrl.errors?.['required']">
+                    Article Image URL is required
+                </div>
+                <div *ngIf="articleImageUrl.errors?.['pattern']">
+                    Article Image URL does not seem to be a valid URL
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" ngModel name="isOnSale">
+                On Sale
+            </div>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <h4 class="successful" *ngIf="!articleForm.invalid">{{messageSuccessful}}</h4>
+</div>

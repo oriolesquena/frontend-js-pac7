@@ -1,0 +1,5 @@
+<div>
+  <input type="text" placeholder="Search articles" name="searchBox" [(ngModel)]="searchTerm" (keyup)="search()" />
+</div>
+<app-article-item [article]="article" (quantityChange)="onQuantityChange($event)"
+  *ngFor="let article of articles$ | async"></app-article-item>

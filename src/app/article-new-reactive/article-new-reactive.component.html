@@ -1,0 +1,50 @@
+<h3>
+    Create Article
+</h3>
+
+<div>
+    <h4 class="error" *ngIf="articleForm.invalid">{{message}}</h4>
+    <form (ngSubmit)="createArticle()" [formGroup]="articleForm">
+        <div>
+            <div>
+                <input type="text" name="name" placeholder="Article Name" formControlName="name" required />
+            </div>
+            <div class="error" *ngIf="(name?.dirty  || message) && name?.invalid">
+                <div *ngIf="name?.errors?.['required']">
+                    Article Name is required
+                </div>
+                <div *ngIf="name?.errors?.['forbiddenName']">
+                    Article Name can't be one of the following: Prueba, Test, Mock or Fake
+                </div>
+            </div>
+            <div>
+                <input type="number" name="price" placeholder="Article Price" formControlName="price">
+            </div>
+            <div class="error" *ngIf="(price?.dirty || message) && price?.invalid">
+                <div *ngIf="price?.errors?.['required']">
+                    Article price is required
+                </div>
+                <div *ngIf="price?.errors?.['min']">
+                    Article price must be atleast 0.10€
+                </div>
+            </div>
+            <div>
+                <input type="text" name="imageUrl" placeholder="Article Image URL" formControlName="imageUrl">
+            </div>
+            <div class="error" *ngIf="(imageUrl?.dirty || message) &&
+                        imageUrl?.invalid">
+                <div *ngIf="imageUrl?.errors?.['required']">
+                    Article Image URL is required
+                </div>
+                <div *ngIf="imageUrl?.errors?.['pattern']">
+                    Article Image URL does not seem to be a valid URL
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" formControlName="isOnSale" name="isOnSale"> On Sale
+            </div>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <h4 class="successful" *ngIf="!articleForm.invalid">{{messageSuccessful}}</h4>
+</div>
