@@ -14,6 +14,9 @@ import { ArticleNewTemplateComponent } from './article-new-template/article-new-
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { ArticleService } from './services/article-service';
 import { DefaultPipe } from './default.pipe';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 
 const rutas: Routes = [
   { path: '', component: ArticleListComponent },
@@ -30,7 +33,10 @@ const rutas: Routes = [
     ArticleListComponent,
     ArticleNewTemplateComponent,
     ArticleNewReactiveComponent,
-    DefaultPipe
+    DefaultPipe,
+    LoginComponent,
+    RegisterComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
