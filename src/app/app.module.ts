@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -19,12 +19,14 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { UserStoreService } from './services/user-store.service';
 import { UserService } from './services/user.service';
+import { AuthGuard } from './guards/auth.guard';
+import { ArticleAppInterceptor } from './services/article-app.interceptor';
 
 const rutas: Routes = [
   { path: '', component: LoginComponent },
   { path: 'article/list', component: ArticleListComponent },
   { path: 'article-new-template', component: ArticleNewTemplateComponent },
-  { path: 'article/create', component: ArticleNewReactiveComponent },
+  { path: 'article/create', component: ArticleNewReactiveComponent, canActivate: [AuthGuard] },
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
@@ -55,6 +57,12 @@ const rutas: Routes = [
     ArticleService,
     UserStoreService,
     UserService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ArticleAppInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

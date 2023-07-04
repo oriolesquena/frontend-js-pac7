@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserStoreService {
 
-  private _token!: string;
+  private _token!: string | null;
   constructor() { }
 
   set token(token: string) {
@@ -13,7 +11,7 @@ export class UserStoreService {
   }
 
   get token() {
-    return this._token;
+    return this._token!;
   }
 
   isLoggedIn() {
