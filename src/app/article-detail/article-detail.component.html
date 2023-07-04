@@ -1,1 +1,10 @@
-<p>article-detail works!</p>
+<div class="article-item" [class.sale]="article.isOnSale">
+    <div class="image"><img [src]="article.imageUrl"></div>
+    <div class="details">
+        <div class="name">{{article.name}}</div>
+        <div class="price">$ {{article.price}}</div>
+        <div>
+            {{article.description}}
+        </div>
+    </div>
+</div>
