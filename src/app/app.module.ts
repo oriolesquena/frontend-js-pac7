@@ -17,12 +17,17 @@ import { DefaultPipe } from './default.pipe';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { UserStoreService } from './services/user-store.service';
+import { UserService } from './services/user.service';
 
 const rutas: Routes = [
-  { path: '', component: ArticleListComponent },
-  { path: 'article-list', component: ArticleListComponent },
+  { path: '', component: LoginComponent },
+  { path: 'article/list', component: ArticleListComponent },
   { path: 'article-new-template', component: ArticleNewTemplateComponent },
-  { path: 'article-new-reactive', component: ArticleNewReactiveComponent }
+  { path: 'article/create', component: ArticleNewReactiveComponent },
+  { path: 'article/:id', component: ArticleDetailComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
@@ -47,7 +52,9 @@ const rutas: Routes = [
     CommonModule
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    UserStoreService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
