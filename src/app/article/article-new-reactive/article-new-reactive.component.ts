@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Article } from 'src/app/model/article';
-import { ArticleService } from '../services/article-service';
+import { ArticleService } from '../../services/article-service';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({

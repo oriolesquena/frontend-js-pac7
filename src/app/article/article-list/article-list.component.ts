@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Article} from '../model/article';
+import {Article} from '../../model/article';
 import {ArticleQuantityChange} from 'src/app/model/article-quantity-change';
 
-import { ArticleService } from '../services/article-service';
+import { ArticleService } from '../../services/article-service';
 
 import { Observable } from 'rxjs'
 import { Subject } from 'rxjs';
